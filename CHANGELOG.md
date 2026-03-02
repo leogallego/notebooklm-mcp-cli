@@ -5,6 +5,11 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.3.18] - 2026-03-02
+
+### Added
+- **Infographic visual styles** — Infographics now support 11 visual styles matching the NotebookLM web UI: `auto_select`, `sketch_note`, `professional`, `bento_grid`, `editorial`, `instructional`, `bricks`, `clay`, `anime`, `kawaii`, `scientific`. Available via MCP (`infographic_style` parameter on `studio_create`), CLI (`--style` flag on `nlm infographic create`), and Python API (`visual_style_code` on `create_infographic()`). Default is `auto_select` for backward compatibility.
+
 ## [0.3.17] - 2026-03-02
 
 ### Added

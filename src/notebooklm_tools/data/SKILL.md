@@ -254,7 +254,7 @@ Use `studio_create` with `artifact_type` and type-specific options. All require 
 | `flashcards` | `difficulty`: easy/medium/hard |
 | `mind_map` | `title` |
 | `slide_deck` | `slide_format`: detailed_deck/presenter_slides, `slide_length`: short/default |
-| `infographic` | `orientation`: landscape/portrait/square, `detail_level`: concise/standard/detailed |
+| `infographic` | `orientation`: landscape/portrait/square, `detail_level`: concise/standard/detailed, `infographic_style`: auto_select/sketch_note/professional/bento_grid/editorial/instructional/bricks/clay/anime/kawaii/scientific |
 | `data_table` | `description` (REQUIRED) |
 
 **Common options**: `source_ids`, `language` (BCP-47 code), `focus_prompt`
@@ -315,9 +315,10 @@ nlm slides revise <artifact-id> --slide '1 Make the title larger' --confirm
 
 # Infographic
 nlm infographic create <id> --confirm
-nlm infographic create <id> --orientation portrait --detail detailed --confirm
+nlm infographic create <id> --orientation portrait --detail detailed --style professional --confirm
 # Orientations: landscape, portrait, square
 # Detail: concise, standard, detailed
+# Styles: auto_select, sketch_note, professional, bento_grid, editorial, instructional, bricks, clay, anime, kawaii, scientific
 
 # Video
 nlm video create <id> --confirm

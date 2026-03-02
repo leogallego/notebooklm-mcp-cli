@@ -445,7 +445,7 @@ Simply chat with your AI tool (Claude Code, Cursor, Gemini CLI) using natural la
 - "Generate a video explainer with classic visual style"
 - "Make a briefing doc from these sources"
 - "Create flashcards for studying, medium difficulty"
-- "Generate an infographic in landscape orientation"
+- "Generate an infographic in landscape orientation with professional style"
 - "Build a mind map from my research sources"
 - "Create a slide deck presentation from this notebook"
 
