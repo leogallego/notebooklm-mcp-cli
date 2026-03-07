@@ -13,6 +13,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
   - CLI: `nlm video create <notebook> --format cinematic`
   - ⚠️ **Note for free/Pro users:** Cinematic is gated behind NotebookLM Plus/Ultra. Free and Pro tier users will see: `"NotebookLM rejected video creation. Try again later or create from NotebookLM UI for diagnosis."` — this is expected behavior, not a bug.
 
+### Fixed
+- **Claude Desktop `.mcpb` extension disconnects (Issue #78)** — The `.mcpb` bundle was incomplete (only contained `manifest.json` with no entrypoint) and relied on `uvx` being in PATH, which Claude Desktop's restricted macOS environment doesn't expose. Fixed by bundling a cross-platform Python launcher (`run_server.py`) that defensively resolves `uvx` across common install locations (`~/.local/bin`, `~/.cargo/bin`, `/opt/homebrew/bin`, etc.) and using `${__dirname}` for reliable path resolution. Thanks to **@abanoub-ashraf** for the detailed diagnosis and reproduction steps.
+
 ## [0.4.0] - 2026-03-05
 
 ### Added
