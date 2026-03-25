@@ -5,7 +5,14 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.1.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [0.5.6] - 2026-03-24
+
+### Fixed
+- **Windows: manual cookies rejected after import (Issue #105)** — `nlm login --manual --file` saved cookies correctly, but subsequent requests to `notebooklm.google.com` were rejected by Google (302 → login page) because the page-fetch headers included macOS-specific Client Hints (`sec-ch-ua-platform: "macOS"`, `sec-ch-ua`, `sec-ch-ua-mobile`). When cookies were captured from a Windows Chrome session, the OS fingerprint mismatch caused Google to reject the session. Removed all three `sec-ch-ua*` headers (they're optional per spec) and switched to a platform-neutral Linux Chrome UA — making auth platform-agnostic. Also added a multi-pattern CSRF token fallback (`SNlM0e` → `at=` → `FdrFJe`) in `_refresh_auth_tokens`, and a `make_console(safe_box=True)` factory to prevent `UnicodeEncodeError` crashes on Windows `cp1251`/`cp1252` codepage terminals. Thanks to **@pakulyaev** for the detailed diagnosis and debug output! (5 new regression tests added)
+- **Windows: IPv6 WebSocket connection error during `nlm login` (Issue #108)** — On Windows, Chrome's DevTools debugger binds to `127.0.0.1` (IPv4), but `websocket-client` resolves `localhost` to `::1` (IPv6), causing `PermissionError: [WinError 10013]`. Added a `_normalize_ws_url()` helper that explicitly rewrites `ws://localhost:` to `ws://127.0.0.1:` at all 4 WebSocket connection sites in `cdp.py`. Thanks to **@theteleporter** for the spot-on diagnosis!
+
 ## [0.5.5] - 2026-03-23
+
 
 ### Fixed
 - **MCP `download_artifact` failing for report/mind_map/data_table (Issue #107)** — The MCP `download_artifact` tool exclusively routed through `download_async()`, but `_dispatch_async()` had no handlers for `report`, `mind_map`, or `data_table` (only `_dispatch_sync()` did). Added these three non-streaming types to the async dispatcher so all artifact types are downloadable via the MCP tool. Thanks to **@Neophen** for the detailed bug report!
